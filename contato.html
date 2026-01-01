@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="contato.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Fazenda Boa Vista</title>
+</head>
+
+<body>
+  <header id="header">
+    <div class="container">
+      <div class="logo">
+        <a href="index.html">
+          <img src="logo_boavista.png" alt="Logo Boa Vista">
+        </a>
+      </div>
+      <div class="menu-toggle" id="menu-toggle">
+        ☰
+      </div>
+
+      <nav id="nav">
+        <a href="index.html">Início</a>
+        <a href="produtos.html">Produtos</a>
+        <a href="sobrenos.html">Sobre Nós</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="contato" id="contato">
+    <div class="contato-header">
+      <span>CONTATO</span>
+      <h2>Vamos Conversar?</h2>
+      <p>
+        Entre em contato conosco para solicitar um orçamento
+        ou tirar dúvidas sobre nossos serviços.
+      </p>
+    </div>
+
+    <div class="contato-grid">
+      <!-- FORM -->
+      <form class="contato-form" onsubmit="enviarWhatsApp(event)">
+        <input type="text" id="nome" placeholder="Seu Nome" required>
+        <input type="email" id="email" placeholder="Seu Email" required>
+        <textarea id="mensagem" placeholder="Sua Mensagem" rows="5" required></textarea>
+
+        <button type="submit" class="btn-enviar">
+          <i class="fa-brands fa-whatsapp"></i> Enviar mensagem via WhatsApp
+        </button>
+      </form>
+
+      <!-- INFO -->
+      <div class="contato-info">
+        <h3>informações de Contato</h3>
+
+        <div class="info-item">
+          <span><i class="fa-solid fa-map-pin"></i></span>
+          <div>
+            <strong>Localização</strong>
+            <p>Três Marias, Minas Gerais</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <span><i class="fa-solid fa-phone"></i></span>
+          <div>
+            <strong>Telefone</strong>
+            <p>31 99393-2063</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <span><i class="fa-solid fa-envelope"></i></span>
+          <div>
+            <strong>E-mail</strong>
+            <p>amandavitorfelipe@gmail.com</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <span><i class="fa-solid fa-clock"></i></span>
+          <div>
+            <strong>Horário</strong>
+            <p>Seg-Dom: 13h às 18h</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ 
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <img src="logo_boavista.png" alt="EA CONSTRUCT BV">
+        <p>Produtos da roça feitos com cuidado, excelência e confiança.</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Navegação</h4>
+        <a href="index.html">Início</a>
+        <a href="produtos.html">Produtos</a>
+        <a href="sobrenos.html">Sobre Nós</a>
+        <a href="#contato">Contato</a>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contato</h4>
+        <p><i class="fa-solid fa-map-pin"></i> Três Marias - Minas Gerais</p>
+        <p><i class="fa-solid fa-phone"></i> 31 99393-2063</p>
+        <p><i class="fa-solid fa-envelope"></i> amandavitorfelipe@gmail.com</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2020 FAZENDA BOA VISTA • Todos os direitos reservados</p>
+    </div>
+  </footer>
+</body>
+
+<script src="script.js"></script>
+<script>
+  function enviarWhatsApp(event) {
+    event.preventDefault();
+
+    const nome = document.getElementById("nome").value;
+    const email = document.getElementById("email").value;
+    const mensagem = document.getElementById("mensagem").value;
+
+    const texto =
+      `Olá! Estou entrando em contato com você através do site.%0A` +
+      `*Nome:* ${nome}%0A` +
+      `*Email:* ${email}%0A` +
+      `*Mensagem:* ${mensagem}`;
+
+    const telefone = "5531993932063";
+    const url = `https://wa.me/${telefone}?text=${texto}`;
+
+    window.open(url, "_blank");
+  }
+</script>
+</html>

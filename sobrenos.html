@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="sobrenos.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Fazenda Boa Vista</title>
+</head>
+
+<body>
+  <header id="header">
+    <div class="container">
+      <div class="logo">
+        <a href="index.html">
+          <img src="logo_boavista.png" alt="Logo Boa Vista">
+        </a>
+      </div>
+      <div class="menu-toggle" id="menu-toggle">
+        ☰
+      </div>
+
+      <nav id="nav">
+        <a href="index.html">Início</a>
+        <a href="produtos.html">Produtos</a>
+        <a href="#sobrenos">Sobre Nós</a>
+        <a href="contato.html">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="about-page" id="sobrenos">
+    <div class="about-container">
+
+      <div class="about-slider">
+        <img src="sobrenos1.jpg" class="active">
+        <img src="sobrenos2.jpg">
+        <img src="sobrenos3.jpg">
+      </div>
+
+      <div class="about-content">
+        <span class="section-tag">SOBRE NÓS</span>
+        <h1>Cultivando confiança desde 2020.</h1>
+
+        <p>
+          Desde 2020, a Fazenda Boa Vista se dedica à produção e seleção de 
+          produtos da roça de alta qualidade, sempre prezando pelo cuidado 
+          em cada etapa — do campo até a sua mesa. Trabalhamos com 
+          responsabilidade, atenção aos detalhes e respeito aos nossos 
+          clientes, oferecendo queijos, doces, mel e ovos produzidos com 
+          padrões artesanais e excelência.
+        </p>
+
+        <p>
+          Nosso compromisso vai além do sabor: buscamos confiança, 
+          transparência e constância na entrega, garantindo produtos 
+          frescos e selecionados com rigor. Atendemos com orgulho as regiões 
+          de <b>Sete Lagoas, Belo Horizonte e Três Marias</b>, levando o verdadeiro 
+          sabor da roça com pontualidade e cuidado.
+        </p>
+
+        <p>
+          Mais do que vender produtos, cultivamos relações baseadas na 
+          qualidade, no respeito e na confiança de quem escolhe a Fazenda 
+          Boa Vista.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <img src="logo_boavista.png" alt="EA CONSTRUCT BV">
+        <p>Produtos da roça feitos com cuidado, excelência e confiança.</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Navegação</h4>
+        <a href="index.html">Início</a>
+        <a href="produtos.html">Produtos</a>
+        <a href="#sobrenos">Sobre Nós</a>
+        <a href="contato.html">Contato</a>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contato</h4>
+        <p><i class="fa-solid fa-map-pin"></i> Três Marias - Minas Gerais</p>
+        <p><i class="fa-solid fa-phone"></i> 31 99393-2063</p>
+        <p><i class="fa-solid fa-envelope"></i> amandavitorfelipe@gmail.com</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2020 FAZENDA BOA VISTA • Todos os direitos reservados</p>
+    </div>
+  </footer>
+
+</body>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  lucide.createIcons();
+</script>
+<script>
+  const slides = document.querySelectorAll(".about-slider img");
+  let current = 0;
+
+  setInterval(() => {
+    slides[current].classList.remove("active");
+    current = (current + 1) % slides.length;
+    slides[current].classList.add("active");
+  }, 3500);
+</script>
+
+<script src="script.js"></script>
+
+</html>

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="contato1.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Fazenda Boa Vista</title>
+</head>
+<div class="produto-tela" id="produtoTela">
+
+  <button class="fechar-produto" onclick="fecharProdutoTela()">✕</button>
+
+  <div class="produto-imagem">
+    <div class="produto-imagem">
+  <button class="seta esquerda" onclick="imgAnterior()">❮</button>
+
+  <img id="produtoImagem">
+
+  <button class="seta direita" onclick="imgProxima()">❯</button>
+</div>
+
+  </div>
+
+  <div class="produto-detalhes">
+    <h1 id="produtoNome"></h1>
+    <p id="produtoDescricao"></p>
+    <strong id="produtoPreco"></strong>
+
+    <div class="controle-quantidade">
+      <button onclick="diminuirQtd()">−</button>
+      <span id="qtdProduto">1</span>
+      <button onclick="aumentarQtd()">+</button>
+    </div>
+
+    <button class="btn-add" onclick="adicionarAoCarrinho()">
+      Adicionar ao carrinho
+    </button>
+  </div>
+
+</div>
+
+
+<body>
+  <header id="header">
+    <div class="container">
+      <div class="logo">
+        <img src="logo_boavista.png" alt="Logo Boa Vista">
+      </div>
+      <div class="menu-toggle" id="menu-toggle">
+        ☰
+      </div>
+
+      <nav id="nav">
+        <a href="index.html">Início</a>
+        <a href="produtos.html">Produtos</a>
+        <a href="sobrenos.html">Sobre Nós</a>
+        <a href="contato.html">Contato</a>
+      </nav>
+
+      <div id="cart" onclick="abrirCarrinho()">
+        🛒
+        <span id="badge">0</span>
+    </div>
+  </header>
+
+  <div id="carrinhoModal" class="modal-carrinho">
+    <div class="modal-content-carrinho">
+        <h2>Seu Carrinho</h2>
+        <pre id="lista"></pre>
+        <p id="total"></p>
+        <button id="finalizar" onclick="finalizarCompra()">Finalizar Compra</button>
+        <button id="limpar" onclick="limparCarrinho()">Limpar Carrinho</button>
+        <button id="fechar" onclick="fecharCarrinho()">Fechar</button>
+    </div>
+</div>
+<div id="modal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modal-img">
+</div>
+
+  <section class="contato" id="produtos">
+    <div class="contato-header">
+      <span>Produtos</span>
+      <h2>O Melhor da Roça para Você</h2>
+      <p>
+        Entregamos em Sete Lagoas, Belo Horizonte e Três Marias.
+      </p>
+    </div>
+</section>
+
+<!-- PRODUTOS -->
+<div class="produtos-grid">
+<!-- Queijo minas -->
+<div class="produto-card"
+onclick="abrirProdutoTela(
+  'Queijo Minas Artesanal',
+  37,
+  'produtos/queijominas2.jpg',
+  'Queijo tradicional, fresco e macio, com sabor suave e textura cremosa. Ideal para consumo diário, cafés e receitas.',
+  [
+    'produtos/queijominas1.jpg', 
+    'produtos/queijominas3.jpg',
+    'produtos/queijominas4.jpg'
+]
+)">
+
+  <img src="/produtos/queijominas2.jpg">
+  <h3>Queijo Minas Peça</h3>
+  <span>R$ 37,00</span>
+</div>
+
+<!-- Queijo mussarela -->
+<div class="produto-card"
+onclick="abrirProdutoTela(
+  'Queijo Mussarela',
+  37,
+  'produtos/mucarela1.jpg',
+  'Queijo de sabor leve e derretimento perfeito. Ótima opção para lanches, pizzas e pratos do dia a dia.',
+  [
+    'produtos/mucarela2.jpg', 
+    'produtos/mucarela3.jpg',
+    'produtos/mucarela4.jpg'
+]
+)">
+
+  <img src="/produtos/mucarela1.jpg">
+  <h3>Mussarela Peça</h3>
+  <span>R$ 37,00</span>
+</div>
+
+<!-- Queijo Requeijao -->
+  <div class="produto-card"
+onclick="abrirProdutoTela(
+  'Requeijão Peça 500g',
+  37,
+  'produtos/requeijao4.jpg',
+  'Requeijão cremoso e saboroso, feito com leite de qualidade. Perfeito para passar no pão, torradas e acompanhar receitas.',
+  [
+    'produtos/requeijao2.jpg', 
+    'produtos/requeijao1.jpg',
+    'produtos/requeijao3.jpg'
+]
+)">
+
+  <img src="/produtos/requeijao4.jpg">
+  <h3>Requeijão 500g</h3>
+  <span>R$ 37,00</span>
+</div>
+
+<!-- Queijo Parmesao -->
+  <div class="produto-card"
+onclick="abrirProdutoTela(
+  'Parmesão Peça Kilo',
+  47,
+  'produtos/parmesao2.jpg',
+  'Queijo curado, sabor intenso e textura firme. Ideal para ralar, finalizar pratos e dar um toque especial às receitas.',
+  [
+    'produtos/permesao1.jpg', 
+    'produtos/parmesao3.jpg',
+    'produtos/parmesao4.jpg'
+]
+)">
+
+  <img src="/produtos/parmesao2.jpg">
+  <h3>Parmesão Peça Kilo</h3>
+  <span>R$ 47,00</span>
+</div>
+
+<!-- Queijo Provolone -->
+  <div class="produto-card"
+onclick="abrirProdutoTela(
+  'Provolone',
+  37,
+  'produtos/provolone4.jpg',
+  'Queijo de sabor marcante e levemente defumado. Excelente para tábuas de frios, sanduíches e consumo puro.',
+  [
+    'produtos/provolone3.jpg',
+    'produtos/provolone2.jpg',
+    'produtos/provolone1.jpg' 
+]
+)">
+
+  <img src="/produtos/provolone4.jpg">
+  <h3>Provolone Peça</h3>
+  <span>R$ 37,00</span>
+</div>
+
+<!-- Doce de leite -->
+  <div class="produto-card"
+onclick="abrirProdutoTela(
+  'Doce de Leite 500g',
+  22,
+  'produtos/docedleite2.jpg',
+  'Doce de leite cremoso, feito de forma artesanal, com sabor equilibrado e textura irresistível.',
+  [
+    'produtos/docedleite1.jpg', 
+    'produtos/docedleite3.jpg',
+    'produtos/docedleite4.jpg'
+]
+)">
+
+  <img src="/produtos/docedleite2.jpg">
+  <h3>Doce de Leite 500g</h3>
+  <span>R$ 22,00</span>
+</div>
+
+<!-- Queijo Coalho peça 300g-->
+<div class="produto-card"
+onclick="abrirProdutoTela(
+  'Queijo Coalho Peça 300g',
+  27,
+  'produtos/coalho300.jpg',
+  'Queijo firme e saboroso, ideal para grelhar ou consumir frio. Mantém a textura e realça o sabor em qualquer preparo.',
+  [
+    'produtos/coalho3001.jpg', 
+    'produtos/coalho3002.jpg'
+]
+)">
+
+<img src="/produtos/coalho300.jpg">
+<h3>Queijo Coalho Peça 300g</h3>
+<span>R$ 27,00</span>
+</div>
+
+<!-- Queijo Coalho peça 500g-->
+ <div class="produto-card"
+onclick="abrirProdutoTela(
+  'Queijo Coalho Peça 500g',
+  42,
+  'produtos/coalho5003.jpg',
+  'Queijo firme e saboroso, ideal para grelhar ou consumir frio. Mantém a textura e realça o sabor em qualquer preparo.',
+  [
+    'produtos/coalho5001.jpg', 
+    'produtos/coalho5002.jpg',
+    'produtos/coalho500.jpg'
+]
+)">
+
+  <img src="/produtos/coalho5003.jpg">
+  <h3>Queijo Coalho Peça 500g</h3>
+  <span>R$ 42,00</span>
+</div>
+
+<!-- Queijo Coalho peça 1500g-->
+ <div class="produto-card"
+onclick="abrirProdutoTela(
+  'Queijo Coalho Peça 1500g',
+  122,
+  'produtos/coalho1k.jpg',
+  'Queijo firme e saboroso, ideal para grelhar ou consumir frio. Mantém a textura e realça o sabor em qualquer preparo.',
+  [
+    'produtos/coalho1k2.jpg',
+    'produtos/coalho1k1.jpg'
+]
+)">
+
+  <img src="/produtos/coalho1k.jpg">
+  <h3>Queijo Coalho Peça 1500g</h3>
+  <span>R$ 122,00</span>
+</div>
+
+<!-- Mel 380g-->
+ <div class="produto-card"
+onclick="abrirProdutoTela(
+  'Mel 380ml',
+  32,
+  'produtos/mel.jpg',
+  'Mel natural, 100% puro, com sabor suave e aroma característico. Ótimo para consumo diário e uso culinário.',
+  [
+    'produtos/mel2.jpg', 
+    'produtos/mel1.jpg', 
+    'produtos/mel3.jpg'
+]
+)">
+
+  <img src="/produtos/mel.jpg">
+  <h3>Mel 380ml</h3>
+  <span>R$ 32,00</span>
+</div>
+
+<!-- Mel Com Favo 850ml-->
+ <div class="produto-card"
+onclick="abrirProdutoTela(
+  'Mel Com Favo 850ml',
+  80,
+  'produtos/melcomfavo.jpg',
+  'Mel puro acompanhado do favo natural, preservando sabor, textura e propriedades originais do produto.',
+  [
+    'produtos/melcomfavo2.jpg', 
+    'produtos/melcomfavo3.jpg'
+]
+)">
+
+  <img src="/produtos/melcomfavo.jpg">
+  <h3>Mel Com Favo 850ml</h3>
+  <span>R$ 80,00</span>
+</div>
+
+<!-- Ovos caipira dúzia-->
+ <div class="produto-card"
+onclick="abrirProdutoTela(
+  'Ovos Caipira Dúzia',
+  17,
+  'produtos/caipira1.jpg',
+  'Ovos frescos de produção caipira, com gema mais amarela e sabor marcante. Ideal para o consumo do dia a dia.',
+  [
+    'produtos/caipira2.jpg', 
+    'produtos/caipira3.jpg'
+]
+)">
+
+  <img src="/produtos/caipira1.jpg">
+  <h3>Ovos Caipira Dúzia</h3>
+  <span>R$ 17,00</span>
+</div>
+
+<!-- Queijo Nozinho 300g-->
+ <div class="produto-card"
+onclick="abrirProdutoTela(
+  'Queijo Nozinho 300g',
+  22,
+  'produtos/nozinho1.jpg',
+  'Queijo em formato de nozinho, macio e sabor suave. Perfeito para petiscos, lanches e tábuas de frios.',
+  [ 
+    'produtos/nozinho2.jpg',
+    'produtos/nozinho3.jpg'
+]
+)">
+
+  <img src="/produtos/nozinho1.jpg">
+  <h3>Queijo Nozinho 300g</h3>
+  <span>R$ 22,00</span>
+</div>
+
+<!-- Queijo Trança 600g-->
+ <div class="produto-card"
+onclick="abrirProdutoTela(
+  'Queijo Trança 600g',
+  42,
+  'produtos/trança2.jpg',
+  'Queijo trançado de textura firme e sabor delicado. Excelente para servir como petisco ou acompanhar refeições.',
+  [
+    'produtos/trança1.jpg', 
+    'produtos/trança3.jpg'
+]
+)">
+
+  <img src="/produtos/trança2.jpg">
+  <h3>Queijo Trança 600g</h3>
+  <span>R$ 42,00</span>
+</div>
+
+<!-- Queijo Palito-->
+ <div class="produto-card"
+onclick="abrirProdutoTela(
+  'Queijo Palito',
+  17,
+  'produtos/palito2.jpg',
+  'Queijo em formato de palito, prático e saboroso. Ideal para petiscos rápidos e consumo no dia a dia.',
+  [
+    'produtos/palito1.jpg'
+]
+)">
+
+  <img src="/produtos/palito2.jpg">
+  <h3>Queijo Palito</h3>
+  <span>R$ 17,00</span>
+</div>
+
+</div>
+<!-- FIM PRODUTOS -->
+
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <img src="logo_boavista.png" alt="EA CONSTRUCT BV">
+        <p>Produtos da roça feitos com cuidado, excelência e confiança.</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Navegação</h4>
+        <a href="index.html">Início</a>
+        <a href="#produtos">Produtos</a>
+        <a href="sobrenos.html">Sobre Nós</a>
+        <a href="contato.html">Contato</a>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contato</h4>
+        <p><i class="fa-solid fa-map-pin"></i> Três Marias - Minas Gerais</p>
+        <p><i class="fa-solid fa-phone"></i> 31 99393-2063</p>
+        <p><i class="fa-solid fa-envelope"></i> amandavitorfelipe@gmail.com</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2020 FAZENDA BOA VISTA • Todos os direitos reservados</p>
+    </div>
+  </footer>
+</body>
+
+<script src="script.js"></script>
+<script>
+let produtoSelecionado = {};
+let quantidadeSelecionada = 1;
+let imagensProduto = [];
+let imgIndex = 0;
+
+
+function abrirProdutoTela(nome, preco, imagem, descricao) {
+  produtoSelecionado = { nome, preco };
+  quantidadeSelecionada = 1;
+
+  document.getElementById("produtoNome").innerText = nome;
+  document.getElementById("produtoPreco").innerText = `R$ ${preco.toFixed(2)}`;
+  document.getElementById("produtoDescricao").innerText = descricao;
+  document.getElementById("produtoImagem").src = imagensProduto[imgIndex];
+  document.getElementById("qtdProduto").innerText = quantidadeSelecionada;
+
+  document.getElementById("produtoTela").style.display = "flex";
+}
+
+function fecharProdutoTela() {
+  document.getElementById("produtoTela").style.display = "none";
+}
+
+function aumentarQtd() {
+  quantidadeSelecionada++;
+  document.getElementById("qtdProduto").innerText = quantidadeSelecionada;
+}
+
+function diminuirQtd() {
+  if (quantidadeSelecionada > 1) {
+    quantidadeSelecionada--;
+    document.getElementById("qtdProduto").innerText = quantidadeSelecionada;
+  }
+}
+
+function adicionarAoCarrinho() {
+  for (let i = 0; i < quantidadeSelecionada; i++) {
+    addItem(produtoSelecionado.nome, produtoSelecionado.preco);
+  }
+  fecharProdutoTela();
+}
+
+function abrirProdutoTela(nome, preco, imagem, descricao, imagensExtras = []) {
+  produtoSelecionado = { nome, preco };
+  quantidadeSelecionada = 1;
+
+  imagensProduto = [imagem, ...imagensExtras];
+  imgIndex = 0;
+
+  document.getElementById("produtoImagem").src = imagensProduto[imgIndex];
+  document.getElementById("produtoNome").innerText = nome;
+  document.getElementById("produtoPreco").innerText = `R$ ${preco.toFixed(2)}`;
+  document.getElementById("produtoDescricao").innerText = descricao;
+  document.getElementById("qtdProduto").innerText = quantidadeSelecionada;
+
+  document.getElementById("produtoTela").style.display = "flex";
+}
+
+function imgProxima() {
+  imgIndex = (imgIndex + 1) % imagensProduto.length;
+  document.getElementById("produtoImagem").src = imagensProduto[imgIndex];
+}
+
+function imgAnterior() {
+  imgIndex = (imgIndex - 1 + imagensProduto.length) % imagensProduto.length;
+  document.getElementById("produtoImagem").src = imagensProduto[imgIndex];
+}
+</script>
+
+
+
+</html>

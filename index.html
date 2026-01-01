@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Fazenda Boa Vista</title>
+</head>
+
+<body>
+  <header id="header">
+    <div class="container">
+      <div class="logo">
+        <img src="logo_boavista.png" alt="Logo Boa Vista">
+      </div>
+      <div class="menu-toggle" id="menu-toggle">
+        ☰
+      </div>
+
+      <nav id="nav">
+        <a href="#inicio">Início</a>
+        <a href="#cardapio">Cardápio</a>
+        <a href="#servicos">Serviços</a>
+        <a href="produtos.html">Produtos</a>
+        <a href="sobrenos.html">Sobre Nós</a>
+        <a href="contato.html">Contato</a>
+      </nav>
+
+     <a href="https://wa.me/32493445030?text=Olá! Gostaria de saber mais informações." target="_blank"
+        class="btn-header">Saiba Mais</a>
+  </header>
+
+  <div id="carrinhoModal" class="modal-carrinho">
+    <div class="modal-content-carrinho">
+        <h2>Seu Carrinho</h2>
+        <pre id="lista"></pre>
+        <p id="total"></p>
+        <button id="finalizar" onclick="finalizarCompra()">Finalizar Compra</button>
+        <button id="limpar" onclick="limparCarrinho()">Limpar Carrinho</button>
+        <button id="fechar" onclick="fecharCarrinho()">Fechar</button>
+    </div>
+</div>
+
+  <section class="hero" id="inicio">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>Sejam Bem Vindos<br><span>Fazenda Boa Vista</span></h1>
+      <p>Sabor da roça, direto pra sua mesa.</p>
+    </div>
+  </section>
+
+  <section class="projects" id="cardapio">
+    <h2>Cardápio</h2>
+    <p>O gostinho da roça começa aqui.</p>
+
+    <div class="projects-grid">
+      <div class="project">
+        <img src="cardapio.png" class="imagem-modal">
+      </div>
+    </div>
+  </section>
+  <div id="modal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modal-img">
+    </div>
+
+  <section class="specialties" id="servicos">
+    <span class="section-tag">ESPECIALIDADES</span>
+    <h2>SERVIÇOS</h2>
+    <p>
+      Onde o serviço também é feito à moda da roça.
+    </p>
+
+    <div class="specialties-grid">
+      <div class="card">
+        <div class="icon">
+          <i class="fa-solid fa-cheese"></i>
+        </div>
+        <h3>Queijos Artesanais</h3>
+        <p>
+          Produção própria com receitas tradicionais, sabor 
+          marcante e qualidade que você sente no primeiro pedaço.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">
+          <i data-lucide="candy"></i>  
+        </div>
+        <h3>Doces e Mel da Roça</h3>
+        <p>
+          Doces caseiros e mel puro, feitos com cuidado e 
+          ingredientes naturais direto do campo.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">
+          <i data-lucide="egg"></i>
+        </div>
+        <h3>Produtos Caipiras</h3>
+        <p>
+          Ovos caipiras e itens selecionados, frescos e 
+          produzidos do jeito simples da roça.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">
+          <i data-lucide="tractor"></i>
+        </div>
+        <h3>Produção Local</h3>
+        <p>
+          Tudo feito na fazenda, valorizando o produtor 
+          local e mantendo a tradição artesanal.
+        </p>
+      </div>
+    </div>
+
+    <section class="social">
+      <a href="https://www.instagram.com/produtosboavista3m/" target="_blank" class="social-item">
+        <i class="fa-brands fa-instagram"></i>
+        <p>Confira nosso Instagram</p>
+      </a>
+
+      <a href="https://wa.me/5531993932063?text=Olá! Gostaria de mais informações." target="_blank"
+        class="social-item">
+        <i class="fa-brands fa-whatsapp"></i>
+        <p>Contate nosso Whatsapp</p>
+      </a>
+    </section>
+  </section>
+
+  <section class="testimonials">
+    <span class="section-tag">DEPOIMENTOS</span>
+    <h2>AVALIAÇÕES</h2>
+    <p class="subtitle">
+      A satisfação dos nossos clientes é a maior prova 
+      da qualidade do nosso trabalho.
+    </p>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="quote-icon">❝❞</div>
+
+        <p class="testimonial-text">
+          O queijo é simplesmente maravilhoso, sabor 
+          forte na medida certa. Dá pra sentir que é 
+          feito com cuidado e tradição.
+        </p>
+
+        <div class="author">
+          <div class="avatar">P</div>
+          <div>
+            <strong>Pedro Silva</strong>
+            
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="quote-icon">❝❞</div>
+
+        <p class="testimonial-text">
+          Mel puro de verdade, bem diferente dos de mercado. 
+          Uso todo dia e o sabor é outro nível.
+        </p>
+
+        <div class="author">
+          <div class="avatar">E</div>
+          <div>
+            <strong>Carolina Vitor</strong>
+           
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="quote-icon">❝❞</div>
+
+        <p class="testimonial-text">
+          O ovo caipira é muito fresco, gema bem amarela e 
+          saboroso. Depois que experimentei, não consigo 
+          mais comprar outro.
+        </p>
+
+        <div class="author">
+          <div class="avatar">M</div>
+          <div>
+            <strong>Maria Gislene Pedroso</strong>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <img src="logo_boavista.png" alt="EA CONSTRUCT BV">
+        <p>Produtos da roça feitos com cuidado, excelência e confiança.</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Navegação</h4>
+        <a href="#inicio">Início</a>
+        <a href="#cardapio">Cardapio</a>
+        <a href="produtos.html">Produtos</a>
+        <a href="sobrenos.html">Sobre Nós</a>
+        <a href="contato.html">Contato</a>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contato</h4>
+        <p><i class="fa-solid fa-map-pin"></i> Três Marias - Minas Gerais</p>
+        <p><i class="fa-solid fa-phone"></i> 31 99393-2063</p>
+        <p><i class="fa-solid fa-envelope"></i> amandavitorfelipe@gmail.com</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2020 FAZENDA BOA VISTA • Todos os direitos reservados</p>
+    </div>
+  </footer>
+
+</body>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  lucide.createIcons();
+</script>
+<script src="script.js"></script>
+
+</html>
