@@ -96,7 +96,7 @@ function finalizarCompra() {
     }
     mensagem += `%0ATotal: R$ ${total.toFixed(2)}`;
 
-    let numero = "5531992546664";
+    let numero = "5531993932063";
 
     window.open(`https://wa.me/${numero}?text=${mensagem}`, "_blank");
 }
