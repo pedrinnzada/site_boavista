@@ -188,15 +188,22 @@ header.scrolled nav a {
     color: #fff;
     max-width: 700px;
     margin-left: 80px;
+    padding-right: 20px;
 }
 
 .hero h1 {
-    font-size: 3.5rem;
+    font-size: clamp(2rem, 5vw, 3.5rem);
     line-height: 1.2;
 }
 
 .hero h1 span {
     color: #EBA32D;
+}
+
+.hero p {
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    margin-top: 12px;
+    opacity: 0.88;
 }
 
 .projects {
@@ -320,8 +327,8 @@ header.scrolled nav a {
 
 .specialties-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
 }
 
 .card {
@@ -398,8 +405,8 @@ html {
 
 .testimonials-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
 }
 
 .testimonial-card {
@@ -694,11 +701,12 @@ html {
 
     .hero-content {
         margin-left: 20px;
+        margin-right: 20px;
         max-width: 100%;
     }
 
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     .projects {
@@ -794,12 +802,42 @@ html {
 
     .footer-container {
         grid-template-columns: 1fr;
-        /* 1 coluna */
         gap: 30px;
     }
 
     .footer-brand img {
-        height: 90px;
+        height: 80px;
     }
 
+    .social {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .btn-header {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content {
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+
+    .projects {
+        padding: 40px 16px;
+    }
+
+    .specialties {
+        padding: 40px 16px;
+    }
+
+    .testimonials {
+        padding: 60px 16px;
+    }
+
+    .footer {
+        padding: 32px 16px 16px;
+    }
 }

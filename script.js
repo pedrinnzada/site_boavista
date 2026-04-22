@@ -1,111 +1,263 @@
-// Script para o menu hambúrguer
-const menuToggle = document.getElementById('menu-toggle');
-const nav = document.getElementById('nav');
+document.addEventListener('DOMContentLoaded', () => {
+  // ========================================
+  // MENU HAMBÚRGUER & NAVEGAÇÃO
+  // ========================================
+  const menuToggle = document.getElementById('menu-toggle');
+  const nav = document.getElementById('nav');
 
-menuToggle.addEventListener('click', () => {
-    nav.classList.toggle('active'); // Alterna a classe 'active' para mostrar/ocultar o menu
-});
-
-// Script para o header scrolled
-window.addEventListener('scroll', () => {
-    const header = document.querySelector('header');
-
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
-});
-
-document.querySelectorAll('#nav a').forEach(link => {
-  link.addEventListener('click', () => {
-    nav.classList.remove('active');
-  });
-});
-
-
-// modal
-
-const modal = document.getElementById("modal");
-const modalImg = document.getElementById("modal-img");
-const span = document.querySelector(".close");
-
-document.querySelectorAll(".imagem-modal").forEach(img => {
-    img.addEventListener("click", () => {
-        modal.style.display = "block";
-        modalImg.src = img.src;
+  if (menuToggle && nav) {
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
     });
-});
+  }
 
-// Fechar ao clicar no X
-span.onclick = function() {
-    modal.style.display = "none";
-}
+  document.querySelectorAll('#nav a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (nav) nav.classList.remove('active');
+    });
+  });
 
-// Fechar ao clicar fora da imagem
-modal.onclick = function(e) {
-    if (e.target === modal) {
-        modal.style.display = "none";
+  // ========================================
+  // HEADER SCROLLED
+  // ========================================
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (header) {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
     }
-}
+  });
 
-// CARRINHO
-let carrinho = {};
-let total = 0;
-let totalItens = 0;
+  // ========================================
+  // VARIÁVEIS GLOBAIS DE PRODUTO
+  // ========================================
+  window.produtoSelecionado = {};
+  window.quantidadeSelecionada = 1;
+  window.imagensProduto = [];
+  window.imgIndex = 0;
 
-function addItem(nome, preco) {
-    if (!carrinho[nome]) carrinho[nome] = 0;
+  // ========================================
+  // TELA DE DETALHE DO PRODUTO (MODAL)
+  // ========================================
+  window.abrirProdutoTela = function(nome, preco, imagem, descricao, imagensExtras = []) {
+    window.produtoSelecionado = { nome, preco };
+    window.quantidadeSelecionada = 1;
+    window.imagensProduto = [imagem, ...imagensExtras];
+    window.imgIndex = 0;
 
-    carrinho[nome]++;
-    totalItens++;
-    total += preco;
+    const imgEl = document.getElementById("produtoImagem");
+    if (imgEl) imgEl.src = window.imagensProduto[window.imgIndex];
+    
+    document.getElementById("produtoNome").innerText = nome;
+    document.getElementById("produtoPreco").innerText = `R$ ${preco.toFixed(2)}`;
+    document.getElementById("produtoDescricao").innerText = descricao;
+    document.getElementById("qtdProduto").innerText = window.quantidadeSelecionada;
 
-    document.getElementById("badge").innerText = totalItens;
-}
+    // Atualiza dots
+    const dots = document.getElementById("imgDots");
+    if (dots) {
+      dots.innerHTML = "";
+      window.imagensProduto.forEach((_, i) => {
+        const dot = document.createElement("span");
+        dot.className = "img-dot" + (i === 0 ? " active" : "");
+        dot.onclick = () => { window.imgIndex = i; window.atualizarImagem(); };
+        dots.appendChild(dot);
+      });
+    }
 
-function abrirCarrinho() {
-    atualizarCarrinho();
-    document.getElementById("carrinhoModal").style.display = "flex";
-}
+    // Whatsapp Link
+    const msgWa = `Olá! Gostaria de pedir: ${nome} (R$ ${preco.toFixed(2)})`;
+    const btnWa = document.getElementById("btnWhatsapp");
+    if (btnWa) btnWa.href = `https://wa.me/5531993932063?text=${encodeURIComponent(msgWa)}`;
 
-function fecharCarrinho() {
-    document.getElementById("carrinhoModal").style.display = "none";
-}
+    const modal = document.getElementById("produtoTela");
+    if (modal) {
+      modal.style.display = "flex";
+      document.body.style.overflow = "hidden";
+    }
+  };
 
-function atualizarCarrinho() {
+  window.fecharProdutoTela = function() {
+    const modal = document.getElementById("produtoTela");
+    if (modal) modal.style.display = "none";
+    document.body.style.overflow = "";
+  };
+
+  window.atualizarImagem = function() {
+    document.getElementById("produtoImagem").src = window.imagensProduto[window.imgIndex];
+    document.querySelectorAll(".img-dot").forEach((d, i) => {
+      d.classList.toggle("active", i === window.imgIndex);
+    });
+  };
+
+  window.imgProxima = function() {
+    if (window.imagensProduto.length <= 1) return;
+    window.imgIndex = (window.imgIndex + 1) % window.imagensProduto.length;
+    window.atualizarImagem();
+  };
+
+  window.imgAnterior = function() {
+    if (window.imagensProduto.length <= 1) return;
+    window.imgIndex = (window.imgIndex - 1 + window.imagensProduto.length) % window.imagensProduto.length;
+    window.atualizarImagem();
+  };
+
+  window.aumentarQtd = function() {
+    window.quantidadeSelecionada++;
+    document.getElementById("qtdProduto").innerText = window.quantidadeSelecionada;
+  };
+
+  window.diminuirQtd = function() {
+    if (window.quantidadeSelecionada > 1) {
+      window.quantidadeSelecionada--;
+      document.getElementById("qtdProduto").innerText = window.quantidadeSelecionada;
+    }
+  };
+
+  // ========================================
+  // CARRINHO
+  // ========================================
+  window.carrinho = {};
+  window.total = 0;
+  window.totalItens = 0;
+
+  window.addItem = function(nome, preco) {
+    if (!window.carrinho[nome]) window.carrinho[nome] = 0;
+    window.carrinho[nome]++;
+    window.totalItens++;
+    window.total += preco;
+    const badge = document.getElementById("badge");
+    if (badge) badge.innerText = window.totalItens;
+  };
+
+  window.adicionarAoCarrinho = function() {
+    for (let i = 0; i < window.quantidadeSelecionada; i++) {
+      window.addItem(window.produtoSelecionado.nome, window.produtoSelecionado.preco);
+    }
+    window.fecharProdutoTela();
+    window.mostrarToast(`✅ ${window.produtoSelecionado.nome} adicionado!`);
+  };
+
+  window.abrirCarrinho = function() {
+    window.atualizarCarrinho();
+    const cModal = document.getElementById("carrinhoModal");
+    if (cModal) cModal.style.display = "flex";
+  };
+
+  window.fecharCarrinho = function() {
+    const cModal = document.getElementById("carrinhoModal");
+    if (cModal) cModal.style.display = "none";
+  };
+
+  window.atualizarCarrinho = function() {
     let texto = "";
-
-    for (let item in carrinho) {
-        texto += `${item}: ${carrinho[item]} unidade(s)\n`;
+    for (let item in window.carrinho) {
+      texto += `${item}: ${window.carrinho[item]} unidade(s)\n`;
     }
+    const lista = document.getElementById("lista-carrinho");
+    if (lista) lista.innerText = texto || "Carrinho vazio";
+    const totEl = document.getElementById("total");
+    if (totEl) totEl.innerText = `Total: R$ ${window.total.toFixed(2)}`;
+  };
 
-    document.getElementById("lista").innerText = texto || "Carrinho vazio";
-    document.getElementById("total").innerText = `Total: R$ ${total.toFixed(2)}`;
-}
-
-function finalizarCompra() {
-    if (total === 0) {
-        alert("Seu carrinho está vazio!");
-        return;
+  window.finalizarCompra = function() {
+    if (window.total === 0) {
+      alert("Seu carrinho está vazio!");
+      return;
     }
-
     let mensagem = "Pedido Fazenda Boa Vista:%0A";
-    for (let item in carrinho) {
-        mensagem += `${item}: ${carrinho[item]} unidade(s)%0A`;
+    for (let item in window.carrinho) {
+      mensagem += `${item}: ${window.carrinho[item]} unidade(s)%0A`;
     }
-    mensagem += `%0ATotal: R$ ${total.toFixed(2)}`;
-
+    mensagem += `%0ATotal: R$ ${window.total.toFixed(2)}`;
     let numero = "5531993932063";
-
     window.open(`https://wa.me/${numero}?text=${mensagem}`, "_blank");
-}
+  };
 
-function limparCarrinho() {
-    carrinho = {};
-    total = 0;
-    totalItens = 0;
+  window.limparCarrinho = function() {
+    window.carrinho = {};
+    window.total = 0;
+    window.totalItens = 0;
+    const badge = document.getElementById("badge");
+    if (badge) badge.innerText = 0;
+    window.atualizarCarrinho();
+  };
 
-    document.getElementById("badge").innerText = 0;
-    atualizarCarrinho();
-}
+  // ========================================
+  // TOAST & FILTROS
+  // ========================================
+  window.mostrarToast = function(mensagem) {
+    const toast = document.createElement("div");
+    toast.className = "toast-notificacao";
+    toast.innerText = mensagem;
+    document.body.appendChild(toast);
+
+    setTimeout(() => toast.classList.add("active"), 10);
+    setTimeout(() => {
+      toast.classList.remove("active");
+      setTimeout(() => toast.remove(), 300);
+    }, 3000);
+  };
+
+  window.filtrar = function(categoria, btn) {
+    document.querySelectorAll(".filtro-btn").forEach(b => b.classList.remove("active"));
+    if (btn) btn.classList.add("active");
+
+    document.querySelectorAll(".produto-card").forEach(card => {
+      if (categoria === "todos" || card.dataset.categoria === categoria) {
+        card.style.display = "";
+        card.style.animation = "fadeInUp 0.4s ease forwards";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  };
+
+  // ========================================
+  // EVENT LISTENERS GLOBAIS (DELEGAÇÃO)
+  // ========================================
+  document.addEventListener('click', (e) => {
+    // 1. Verificar se clicou no Card ou botão dentro do Card
+    const card = e.target.closest('.produto-card');
+    if (card) {
+      const btnAdd = e.target.closest('.card-btn-add');
+      
+      // Se clicou no botão "+", adiciona direto
+      if (btnAdd) {
+        e.stopPropagation();
+        const nome = card.dataset.nome;
+        const preco = parseFloat(card.dataset.preco);
+        window.addItem(nome, preco);
+        window.mostrarToast(`✅ ${nome} adicionado!`);
+        return;
+      }
+
+      // Se clicou no card (fora do botão), abre o modal
+      const extras = JSON.parse(card.dataset.extras || "[]");
+      window.abrirProdutoTela(
+        card.dataset.nome,
+        parseFloat(card.dataset.preco),
+        card.dataset.img,
+        card.dataset.desc,
+        extras
+      );
+      return;
+    }
+
+    // 2. Fechar modal de produto ao clicar fora do conteúdo
+    const pModal = document.getElementById("produtoTela");
+    if (e.target === pModal) {
+      window.fecharProdutoTela();
+    }
+    
+    // 3. Fechar modal de carrinho ao clicar fora do conteúdo
+    const cModal = document.getElementById("carrinhoModal");
+    if (e.target === cModal) {
+      window.fecharCarrinho();
+    }
+  });
+
+});
